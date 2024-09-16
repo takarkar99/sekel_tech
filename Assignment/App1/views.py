@@ -11,11 +11,11 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class ProductView(APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
 
 
-    def get(self, request):
+    def get(self, request): 
 
         request_data = request.data
         kwargs = {}
@@ -85,7 +85,7 @@ class ProductView(APIView):
                 obj.description = request_data.get("description", obj.description)
                 price = request_data.get("price",obj.price)
                 if price < 0:
-                    return Response(data={"msg":"please enter positive price"})
+                    return Response(data={"msg":"please enter Valid price"})
                 
                 obj.price = request_data.get("price",obj.price)
                 obj.save()
@@ -137,8 +137,8 @@ class LeadView(APIView):
 
 
 class ReportingView(APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
 
@@ -181,3 +181,8 @@ class ReportingView(APIView):
 
         except Exception as e:
             return Response(data=str(e), status=status.HTTP_400_BAD_REQUEST)
+
+
+
+def m1():
+    print("print the object")
